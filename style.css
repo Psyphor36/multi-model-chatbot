@@ -1,4 +1,4 @@
-/* Color Variables (Theme Management) */
+/* Color Variables */
 :root {
     --bg-color: #f0f2f5;
     --container-bg: #ffffff;
@@ -15,7 +15,6 @@
     --status-text: #666666;
 }
 
-/* Dark Mode Colors */
 [data-theme="dark"] {
     --bg-color: #121212;
     --container-bg: #1e1e1e;
@@ -32,63 +31,67 @@
     --status-text: #aaaaaa;
 }
 
-body {
+/* Page lock & smooth transition */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: var(--bg-color);
     color: var(--text-color);
-    margin: 0;
-    padding: 0;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    box-sizing: border-box;
-    transition: background 0.3s, color 0.3s;
 }
 
+/* Chat Container */
 #chat-container {
-    width: 90%;
+    width: 100%;
     max-width: 900px;
-    height: 90vh;
+    height: 100dvh;
     background: var(--container-bg);
     display: flex;
     flex-direction: column;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     overflow: hidden;
-    transition: background 0.3s;
+    box-sizing: border-box;
+    transition: background 0.3s ease, border-color 0.3s ease;
 }
 
+/* Header */
 #chat-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background: var(--header-bg);
-    padding: 15px 20px;
+    padding: 12px 15px;
     border-bottom: 1px solid var(--border-color);
     font-weight: bold;
-    font-size: 16px;
+    font-size: 16px; /* Thoda bada font */
+    flex-shrink: 0;
+    transition: background 0.3s ease, border-color 0.3s ease;
 }
 
-/* Header controls wrapper */
 .header-controls {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     align-items: center;
 }
 
 #model-select {
-    max-width: 220px;
-    padding: 6px 10px;
+    max-width: 150px;
+    padding: 6px 8px;
     border-radius: 6px;
     border: 1px solid var(--border-color);
-    font-size: 11px;
+    font-size: 12px; /* Mobile par readable size */
     background: var(--input-bg);
     color: var(--input-text);
-    cursor: pointer;
 }
 
-/* Dark Mode Toggle Button */
 #dark-mode-btn {
     background: transparent;
     border: 1px solid var(--border-color);
@@ -96,37 +99,43 @@ body {
     padding: 6px 10px;
     cursor: pointer;
     font-size: 14px;
-    transition: background 0.2s;
+    color: var(--text-color);
 }
 
 #dark-mode-btn:hover {
     background: rgba(128, 128, 128, 0.1);
 }
 
+/* Chat History - Sirf yahi scroll hoga */
 #chat-history {
     flex: 1;
     overflow-y: auto;
-    padding: 20px;
+    padding: 15px;
     background: var(--bg-color);
     display: flex;
     flex-direction: column;
     gap: 12px;
+    box-sizing: border-box;
+    transition: background 0.3s ease;
 }
 
+/* Input Area */
 #input-area {
     display: flex;
     gap: 10px;
-    padding: 15px 20px;
+    padding: 12px 15px;
     background: var(--header-bg);
     border-top: 1px solid var(--border-color);
+    flex-shrink: 0;
+    transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 #user-input {
     flex: 1;
-    padding: 12px 15px;
+    padding: 12px 14px; /* Mobile par type karne mein asani ke liye bada padding */
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    font-size: 14px;
+    font-size: 16px; /* Mobile par 16px font hone se auto-zoom nahi hota aur saaf dikhta hai */
     background: var(--input-bg);
     color: var(--input-text);
     outline: none;
@@ -143,6 +152,7 @@ body {
     border: none;
     border-radius: 8px;
     font-weight: bold;
+    font-size: 14px;
     cursor: pointer;
     transition: background 0.2s;
 }
@@ -156,20 +166,24 @@ body {
     cursor: not-allowed;
 }
 
+/* Status Bar */
 #status {
     font-size: 12px;
     color: var(--status-text);
-    padding: 6px 20px;
+    padding: 6px 15px;
     background: var(--status-bg);
     border-top: 1px solid var(--border-color);
+    flex-shrink: 0;
+    transition: background 0.3s ease, border-color 0.3s ease;
 }
 
+/* Messages */
 .msg {
-    padding: 10px 15px;
-    border-radius: 8px;
-    max-width: 75%;
+    padding: 12px 16px;
+    border-radius: 10px;
+    max-width: 85%;
     line-height: 1.5;
-    font-size: 14px;
+    font-size: 15px; /* Message text bada aur readable */
     word-wrap: break-word;
 }
 
@@ -187,15 +201,34 @@ body {
     border-bottom-left-radius: 2px;
 }
 
+/* --- MOBILE SPECIFIC FIXES --- */
 @media (max-width: 768px) {
+    html, body {
+        height: 100dvh;
+        overflow: hidden;
+    }
     body {
         padding: 0;
-        align-items: stretch;
+        display: block; /* Background margins khatam karne ke liye */
     }
     #chat-container {
         width: 100%;
-        height: 100vh;
+        height: 100dvh; /* Poori phone screen cover karega */
         border-radius: 0;
+        border: none;
         box-shadow: none;
+    }
+}
+
+/* Desktop ke liye rounded view */
+@media (min-width: 769px) {
+    body {
+        padding: 15px;
+    }
+    #chat-container {
+        height: 92vh;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        border: 1px solid var(--border-color);
     }
 }
