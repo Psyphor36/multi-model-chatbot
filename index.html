@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multimodel chatbot</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="chat-container">
+        <div id="chat-header">
+            <span>Multimodel chatbot</span>
+            <!-- Dynamic Model Dropdown (Code se populate hoga) -->
+            <select id="model-select" disabled>
+                <option value="">Loading models list...</option>
+            </select>
+        </div>
+        
+        <div id="chat-history"></div>
+        
+        <div id="input-area">
+            <input type="text" id="user-input" placeholder="Pehle model load hone dein..." disabled>
+            <button id="send-btn" disabled>Send</button>
+        </div>
+        <div id="status">Fetching available models from registry...</div>
+    </div>
+    
+    <script type="module" src="script.js"></script>
+</body>
+</html>
