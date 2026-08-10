@@ -86,7 +86,7 @@ async function sendMessage() {
 
     try {
         const messages = [
-            { role: "system", content: "be honest and objective." },
+            { role: "system", content: "be honest and objective. Always use real emojis (like 😊, 🚀, 💡) directly in your text, do not write emoji names inside asterisks like *smile*." },
             { role: "user", content: text }
         ];
 
@@ -115,3 +115,26 @@ userInput.onkeypress = (e) => { if (e.key === 'Enter') sendMessage(); };
 
 // Sabse pehle list initialize karo
 initModelSelector();
+
+const darkModeBtn = document.getElementById("dark-mode-btn");
+
+// Check karein ki pehle se koi theme saved hai ya nahi
+const savedTheme = localStorage.getItem("theme") || "light";
+if (savedTheme === "dark") {
+    document.documentElement.setAttribute("data-theme", "dark");
+    darkModeBtn.innerText = "☀️";
+}
+
+// Button click par theme switch karne ka logic
+darkModeBtn.onclick = () => {
+    const currentTheme = document.documentElement.getAttribute("data-theme");
+    if (currentTheme === "dark") {
+        document.documentElement.setAttribute("data-theme", "light");
+        localStorage.setItem("theme", "light");
+        darkModeBtn.innerText = "🌙";
+    } else {
+        document.documentElement.setAttribute("data-theme", "dark");
+        localStorage.setItem("theme", "dark");
+        darkModeBtn.innerText = "☀️";
+    }
+};
