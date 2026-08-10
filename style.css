@@ -31,12 +31,11 @@
     --status-text: #aaaaaa;
 }
 
-/* Page lock & smooth transition */
+/* Page Setup & Smooth Transition */
 html, body {
     margin: 0;
     padding: 0;
-    height: 100%;
-    overflow: hidden;
+    height: 100vh;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: var(--bg-color);
     color: var(--text-color);
@@ -47,19 +46,23 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-/* Chat Container */
+/* Chat Container (Desktop Optimized Wide View) */
 #chat-container {
     width: 100%;
     max-width: 900px;
-    height: 100dvh;
+    height: 90vh;
     background: var(--container-bg);
     display: flex;
     flex-direction: column;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--border-color);
     overflow: hidden;
-    box-sizing: border-box;
-    transition: background 0.3s ease, border-color 0.3s ease;
+    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Header */
@@ -68,28 +71,29 @@ body {
     justify-content: space-between;
     align-items: center;
     background: var(--header-bg);
-    padding: 12px 15px;
+    padding: 15px 20px;
     border-bottom: 1px solid var(--border-color);
     font-weight: bold;
-    font-size: 16px; /* Thoda bada font */
+    font-size: 16px;
     flex-shrink: 0;
     transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 .header-controls {
     display: flex;
-    gap: 8px;
+    gap: 10px;
     align-items: center;
 }
 
 #model-select {
-    max-width: 150px;
-    padding: 6px 8px;
+    max-width: 220px;
+    padding: 6px 10px;
     border-radius: 6px;
     border: 1px solid var(--border-color);
-    font-size: 12px; /* Mobile par readable size */
+    font-size: 12px;
     background: var(--input-bg);
     color: var(--input-text);
+    cursor: pointer;
 }
 
 #dark-mode-btn {
@@ -100,21 +104,22 @@ body {
     cursor: pointer;
     font-size: 14px;
     color: var(--text-color);
+    transition: background 0.2s;
 }
 
 #dark-mode-btn:hover {
     background: rgba(128, 128, 128, 0.1);
 }
 
-/* Chat History - Sirf yahi scroll hoga */
+/* Chat History (Only this scrolls) */
 #chat-history {
     flex: 1;
     overflow-y: auto;
-    padding: 15px;
+    padding: 20px;
     background: var(--bg-color);
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 15px;
     box-sizing: border-box;
     transition: background 0.3s ease;
 }
@@ -122,8 +127,8 @@ body {
 /* Input Area */
 #input-area {
     display: flex;
-    gap: 10px;
-    padding: 12px 15px;
+    gap: 12px;
+    padding: 15px 20px;
     background: var(--header-bg);
     border-top: 1px solid var(--border-color);
     flex-shrink: 0;
@@ -132,13 +137,14 @@ body {
 
 #user-input {
     flex: 1;
-    padding: 12px 14px; /* Mobile par type karne mein asani ke liye bada padding */
+    padding: 12px 15px;
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    font-size: 16px; /* Mobile par 16px font hone se auto-zoom nahi hota aur saaf dikhta hai */
+    font-size: 14px;
     background: var(--input-bg);
     color: var(--input-text);
     outline: none;
+    transition: border-color 0.2s;
 }
 
 #user-input:focus {
@@ -146,7 +152,7 @@ body {
 }
 
 #send-btn {
-    padding: 0 20px;
+    padding: 0 24px;
     background: #007bff;
     color: white;
     border: none;
@@ -170,7 +176,7 @@ body {
 #status {
     font-size: 12px;
     color: var(--status-text);
-    padding: 6px 15px;
+    padding: 8px 20px;
     background: var(--status-bg);
     border-top: 1px solid var(--border-color);
     flex-shrink: 0;
@@ -181,9 +187,9 @@ body {
 .msg {
     padding: 12px 16px;
     border-radius: 10px;
-    max-width: 85%;
+    max-width: 75%;
     line-height: 1.5;
-    font-size: 15px; /* Message text bada aur readable */
+    font-size: 14px;
     word-wrap: break-word;
 }
 
@@ -199,36 +205,4 @@ body {
     color: var(--ai-msg-text);
     align-self: flex-start;
     border-bottom-left-radius: 2px;
-}
-
-/* --- MOBILE SPECIFIC FIXES --- */
-@media (max-width: 768px) {
-    html, body {
-        height: 100dvh;
-        overflow: hidden;
-    }
-    body {
-        padding: 0;
-        display: block; /* Background margins khatam karne ke liye */
-    }
-    #chat-container {
-        width: 100%;
-        height: 100dvh; /* Poori phone screen cover karega */
-        border-radius: 0;
-        border: none;
-        box-shadow: none;
-    }
-}
-
-/* Desktop ke liye rounded view */
-@media (min-width: 769px) {
-    body {
-        padding: 15px;
-    }
-    #chat-container {
-        height: 92vh;
-        border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        border: 1px solid var(--border-color);
-    }
 }
