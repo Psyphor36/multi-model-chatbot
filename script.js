@@ -38,7 +38,7 @@ async function initModelSelector() {
 
 // 2. Model load karne ka function
 async function loadModel(modelName) {
-    statusDiv.innerText = `Loading ${modelName}... (Pehli baar download hone mein time lag sakta hai)`;
+    statusDiv.innerText = `Loading ${modelName}... (First time loading takes time)`;
     userInput.disabled = true;
     sendBtn.disabled = true;
     modelSelect.disabled = true;
