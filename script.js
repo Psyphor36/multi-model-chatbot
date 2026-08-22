@@ -93,7 +93,7 @@ async function sendMessage() {
         const asyncStream = await engine.chat.completions.create({
             messages: messages,
             stream: true,
-            temperature: 0.9
+            temperature: 0.3
         });
 
         let fullResponse = "";
